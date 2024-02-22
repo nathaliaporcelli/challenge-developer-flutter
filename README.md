@@ -224,7 +224,6 @@ DELETE - https://653c0826d5d6790f5ec7c664.mockapi.io/api/v1/student/:id
 - Criar funcionalidade para escollher uma foto do aluno ou capturar a imagem (Obs.: não precisa fazer o upload dessa imagem)
 - Utilização de gerenciador de estado;
 - Segurança da aplicação (filtro de impurezas na autenticação, autorização, guardas, env, criptografia de senha);
-- Gerar .apk e anexar ao repositório de entrega.
 
 # Instruções de entrega
 1. Crie um fork do repositório no seu GitHub
