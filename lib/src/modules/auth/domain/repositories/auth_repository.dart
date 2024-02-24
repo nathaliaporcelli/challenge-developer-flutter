@@ -32,6 +32,10 @@ class AuthRepository implements IAuthRepository {
       ),
     );
 
-    return;
+    final usersList = response.body as List;
+
+    if (usersList.any((user) => user['username'] == dto.username && user['password'] == dto.password)) {
+      return;
+    }
   }
 }

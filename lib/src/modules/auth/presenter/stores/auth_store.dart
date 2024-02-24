@@ -14,14 +14,14 @@ class AuthStore extends ValueNotifier<AuthState> {
     value = state;
   }
 
-  void signIn({
+  Future<void> signIn({
     required String username,
     required String password,
-  }) {
+  }) async {
     try {
       _setValue(AuthLoadingState());
 
-      authRepository.signInUser(
+      await authRepository.signInUser(
         SignInDTO(username: username, password: password),
       );
 

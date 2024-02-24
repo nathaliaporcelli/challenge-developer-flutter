@@ -4,6 +4,7 @@ class CelsaThemeColors {
   static const primary = Color(0xff2f617e);
   static const white = Color(0xffffffff);
   static const black = Color(0xff27262a);
+  static const red = Colors.red;
 }
 
 class CelsaColorScheme extends ColorScheme {
@@ -13,8 +14,8 @@ class CelsaColorScheme extends ColorScheme {
     super.onPrimary = CelsaThemeColors.primary,
     super.secondary = CelsaThemeColors.primary,
     super.onSecondary = CelsaThemeColors.primary,
-    super.error = CelsaThemeColors.primary,
-    super.onError = CelsaThemeColors.primary,
+    super.error = CelsaThemeColors.red,
+    super.onError = CelsaThemeColors.white,
     super.background = CelsaThemeColors.white,
     super.onBackground = CelsaThemeColors.primary,
     super.surface = CelsaThemeColors.white,

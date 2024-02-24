@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 
 import 'core/routes/app_router.dart';
 
-class AppWidget extends StatelessWidget {
+class AppWidget extends StatefulWidget {
   const AppWidget({super.key});
+
+  @override
+  State<AppWidget> createState() => _AppWidgetState();
+}
+
+class _AppWidgetState extends State<AppWidget> {
+  final _router = AppRouter.instance.router;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: CelsaTheme.get(),
       debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter.instance.router,
+      routerConfig: _router,
     );
   }
 }

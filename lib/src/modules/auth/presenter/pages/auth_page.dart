@@ -79,10 +79,7 @@ class _AuthPageState extends State<AuthPage> {
                   Expanded(
                     child: CeslaElevatedButton(
                       title: 'Entrar',
-                      onPressed: () => widget.authStore.signIn(
-                        username: usernameController.text,
-                        password: passwordController.text,
-                      ),
+                      onPressed: signIn,
                     ),
                   ),
                 ],
@@ -93,10 +90,7 @@ class _AuthPageState extends State<AuthPage> {
                   Expanded(
                     child: CeslaOutlinedButton(
                       title: 'Cadastar',
-                      onPressed: () => widget.authStore.signUp(
-                        username: usernameController.text,
-                        password: passwordController.text,
-                      ),
+                      onPressed: signUp,
                     ),
                   ),
                 ],
@@ -106,5 +100,23 @@ class _AuthPageState extends State<AuthPage> {
         ),
       ),
     );
+  }
+
+  void signIn() {
+    if (formKey.currentState!.validate()) {
+      widget.authStore.signIn(
+        username: usernameController.text,
+        password: passwordController.text,
+      );
+    }
+  }
+
+  void signUp() {
+    if (formKey.currentState!.validate()) {
+      widget.authStore.signIn(
+        username: usernameController.text,
+        password: passwordController.text,
+      );
+    }
   }
 }

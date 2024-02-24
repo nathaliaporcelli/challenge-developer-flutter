@@ -38,6 +38,12 @@ class CeslaTextField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        errorStyle: const TextStyle(
+          color: Colors.red,
+        ),
         labelText: labelText,
         prefixIcon: getPrefixIcon(),
         suffixIcon: getSuffixIcon(),
@@ -57,7 +63,9 @@ class CeslaTextField extends StatelessWidget {
       return null;
     }
     return IconButton(
-      icon: Icon(suffixIcon),
+      icon: Icon(
+        suffixIcon,
+      ),
       onPressed: onPressedSuffix,
     );
   }
