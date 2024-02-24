@@ -1,7 +1,7 @@
-enum Images {
+enum CeslaImages {
   icon('assets/icon.png');
 
   final String path;
 
-  const Images(this.path);
+  const CeslaImages(this.path);
 }

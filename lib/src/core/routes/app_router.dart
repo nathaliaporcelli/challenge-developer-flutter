@@ -10,9 +10,11 @@ class AppRouter {
 
   AppRouter._internal();
 
+  final navigatorKey = GlobalKey<NavigatorState>();
+
   GoRouter get router {
     return GoRouter(
-      navigatorKey: GlobalKey<NavigatorState>(),
+      navigatorKey: navigatorKey,
       debugLogDiagnostics: true,
       initialLocation: Routes.splash.path,
       routes: _routes,
@@ -24,6 +26,10 @@ class AppRouter {
       GoRoute(
         path: Routes.splash.path,
         builder: (_, __) => Routes.splash.page,
+      ),
+      GoRoute(
+        path: Routes.login.path,
+        builder: (_, __) => Routes.login.page,
       ),
     ];
   }

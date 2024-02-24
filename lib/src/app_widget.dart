@@ -9,7 +9,6 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      supportedLocales: const [Locale('pt')],
       theme: CelsaTheme.get(),
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.instance.router,
