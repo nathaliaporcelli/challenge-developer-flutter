@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Cesla Debug",
+      "type": "dart",
+      "request": "launch",
+      "cwd": ".",
+      "flutterMode": "debug",
+    },
+    {
+      "name": "Cesla Profile",
+      "type": "dart",
+      "request": "launch",
+      "cwd": ".",
+      "flutterMode": "profile",
+    },
+    {
+      "name": "Cesla Release",
+      "type": "dart",
+      "request": "launch",
+      "cwd": ".",
+      "flutterMode": "release",
+    }
+  ]
+}
