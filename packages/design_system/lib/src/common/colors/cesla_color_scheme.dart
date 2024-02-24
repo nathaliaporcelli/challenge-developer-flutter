@@ -17,7 +17,7 @@ class CelsaColorScheme extends ColorScheme {
     super.onError = CelsaThemeColors.primary,
     super.background = CelsaThemeColors.white,
     super.onBackground = CelsaThemeColors.primary,
-    super.surface = CelsaThemeColors.primary,
+    super.surface = CelsaThemeColors.white,
     super.onSurface = CelsaThemeColors.primary,
     super.surfaceVariant = CelsaThemeColors.primary,
   });

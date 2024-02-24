@@ -7,6 +7,7 @@
       "request": "launch",
       "cwd": ".",
       "flutterMode": "debug",
+      "toolArgs": ["--dart-define-from-file", "env/env.json"]
     },
     {
       "name": "Cesla Profile",
@@ -14,6 +15,7 @@
       "request": "launch",
       "cwd": ".",
       "flutterMode": "profile",
+      "toolArgs": ["--dart-define-from-file", "env/env.json"]
     },
     {
       "name": "Cesla Release",
@@ -21,6 +23,7 @@
       "request": "launch",
       "cwd": ".",
       "flutterMode": "release",
+      "toolArgs": ["--dart-define-from-file", "env/env.json"]
     }
   ]
 }

@@ -12,3 +12,15 @@ linter:
     avoid_empty_else: true
     cascade_invocations: false
     no_default_cases: false
+    use_build_context_synchronously: false
+    require_trailing_commas: true
+    avoid_unnecessary_containers: true
+    await_only_futures: true
+    unnecessary_await_in_return: true
+    prefer_single_quotes: true
+    avoid_redundant_argument_values: true
+    prefer_int_literals: true
+    avoid_void_async: true
+    type_annotate_public_apis: true
+    unnecessary_parenthesis: true
+    use_named_constants: true
