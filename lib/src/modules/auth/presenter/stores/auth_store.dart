@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/exceptions/cesla_exceptions.dart';
 import '../../domain/dtos/sign_in_dto.dart';
 import '../../domain/dtos/sign_up_dto.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -26,8 +27,8 @@ class AuthStore extends ValueNotifier<AuthState> {
       );
 
       _setValue(AuthSuccessState());
-    } catch (e) {
-      _setValue(AuthErrorState());
+    } on CeslaException catch (e) {
+      _setValue(AuthErrorState(e));
     }
   }
 
@@ -43,8 +44,8 @@ class AuthStore extends ValueNotifier<AuthState> {
       );
 
       _setValue(AuthSuccessState());
-    } catch (e) {
-      _setValue(AuthErrorState());
+    } on CeslaException catch (e) {
+      _setValue(AuthErrorState(e));
     }
   }
 }

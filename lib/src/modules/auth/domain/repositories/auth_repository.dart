@@ -5,6 +5,7 @@ import '../../data/adapters/dtos/sign_up_dto_adapter.dart';
 import '../../data/repositories/auth/i_auth_repository.dart';
 import '../dtos/sign_in_dto.dart';
 import '../dtos/sign_up_dto.dart';
+import '../exceptions/user_not_found_exception.dart';
 
 class AuthRepository implements IAuthRepository {
   final IClientService clientService;
@@ -34,8 +35,10 @@ class AuthRepository implements IAuthRepository {
 
     final usersList = response.body as List;
 
-    if (usersList.any((user) => user['username'] == dto.username && user['password'] == dto.password)) {
-      return;
+    if (usersList.every((user) => user['username'] != dto.username && user['password'] != dto.password)) {
+      throw UserNotFoundException(
+        message: 'Usuário ou senha inválidos',
+      );
     }
   }
 }

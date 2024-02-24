@@ -4,6 +4,6 @@ class CeslaException implements Exception {
 
   const CeslaException({
     required this.message,
-    required this.stackTrace,
+    this.stackTrace = StackTrace.empty,
   });
 }

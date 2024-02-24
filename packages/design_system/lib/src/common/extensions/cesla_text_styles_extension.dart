@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CelsaTextStylesExtension extends ThemeExtension<CelsaTextStylesExtension> {
+class CeslaTextStylesExtension extends ThemeExtension<CeslaTextStylesExtension> {
   final TextStyle title;
   final TextStyle header;
   final TextStyle subHeader;
@@ -8,7 +8,7 @@ class CelsaTextStylesExtension extends ThemeExtension<CelsaTextStylesExtension> 
   final TextStyle darkLabel;
   final TextStyle caption;
 
-  CelsaTextStylesExtension({
+  CeslaTextStylesExtension({
     required this.title,
     required this.header,
     required this.subHeader,
@@ -18,7 +18,7 @@ class CelsaTextStylesExtension extends ThemeExtension<CelsaTextStylesExtension> 
   });
 
   @override
-  CelsaTextStylesExtension copyWith({
+  CeslaTextStylesExtension copyWith({
     TextStyle? title,
     TextStyle? header,
     TextStyle? subHeader,
@@ -26,7 +26,7 @@ class CelsaTextStylesExtension extends ThemeExtension<CelsaTextStylesExtension> 
     TextStyle? darkLabel,
     TextStyle? caption,
   }) {
-    return CelsaTextStylesExtension(
+    return CeslaTextStylesExtension(
       title: title ?? this.title,
       header: header ?? this.header,
       subHeader: subHeader ?? this.subHeader,
@@ -37,7 +37,7 @@ class CelsaTextStylesExtension extends ThemeExtension<CelsaTextStylesExtension> 
   }
 
   @override
-  ThemeExtension<CelsaTextStylesExtension> lerp(covariant ThemeExtension<CelsaTextStylesExtension>? other, double t) {
+  ThemeExtension<CeslaTextStylesExtension> lerp(covariant ThemeExtension<CeslaTextStylesExtension>? other, double t) {
     return this;
   }
 }

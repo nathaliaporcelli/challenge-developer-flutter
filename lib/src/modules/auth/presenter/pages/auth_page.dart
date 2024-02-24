@@ -26,6 +26,10 @@ class _AuthPageState extends State<AuthPage> {
     widget.authStore.addListener(() {
       if (widget.authStore.value.isSuccess) {
         context.go(Routes.dashboard.path);
+      } else if (widget.authStore.value.isError) {
+        final errorMessage = widget.authStore.value.asError.exception.message;
+
+        CeslaErrorToast.show(context, errorMessage);
       }
     });
   }

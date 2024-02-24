@@ -22,14 +22,14 @@ class CeslaOutlinedButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           side: const BorderSide(
-            color: CelsaThemeColors.primary,
+            color: CeslaThemeColors.primary,
             width: 1,
           ),
         ),
         child: Text(
           title,
-          style: Theme.of(context).extension<CelsaTextStylesExtension>()!.label.copyWith(
-                color: CelsaThemeColors.primary,
+          style: Theme.of(context).extension<CeslaTextStylesExtension>()!.label.copyWith(
+                color: CeslaThemeColors.primary,
               ),
         ),
       ),

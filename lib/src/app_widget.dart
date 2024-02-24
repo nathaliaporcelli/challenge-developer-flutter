@@ -16,7 +16,7 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: CelsaTheme.get(),
+      theme: CeslaTheme.get(),
       debugShowCheckedModeBanner: false,
       routerConfig: _router,
     );

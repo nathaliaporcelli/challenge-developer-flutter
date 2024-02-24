@@ -21,12 +21,12 @@ class CeslaElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: CelsaThemeColors.primary,
+          backgroundColor: CeslaThemeColors.primary,
         ),
         child: Text(
           title,
-          style: Theme.of(context).extension<CelsaTextStylesExtension>()!.label.copyWith(
-                color: CelsaThemeColors.white,
+          style: Theme.of(context).extension<CeslaTextStylesExtension>()!.label.copyWith(
+                color: CeslaThemeColors.white,
               ),
         ),
       ),
