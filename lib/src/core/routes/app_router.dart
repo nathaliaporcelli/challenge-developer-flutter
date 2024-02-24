@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../modules/auth/presenter/pages/auth_page.dart';
+import '../../modules/auth/presenter/stores/auth_store.dart';
+import '../../modules/dashboard/submodules/menu/dashboard_page.dart';
+import '../../modules/splash/presenter/pages/splash_page.dart';
+import '../services/injector/app_injector.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -25,11 +30,17 @@ class AppRouter {
     return [
       GoRoute(
         path: Routes.splash.path,
-        builder: (_, __) => Routes.splash.page,
+        builder: (_, __) => const SplashPage(),
       ),
       GoRoute(
         path: Routes.login.path,
-        builder: (_, __) => Routes.login.page,
+        builder: (_, __) => AuthPage(
+          authStore: AppInjector.retrive<AuthStore>(),
+        ),
+      ),
+      GoRoute(
+        path: Routes.dashboard.path,
+        builder: (_, __) => const DashboardPage(),
       ),
     ];
   }

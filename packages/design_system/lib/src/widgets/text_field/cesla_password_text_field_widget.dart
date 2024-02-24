@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class CeslaPasswordTextField extends StatefulWidget {
   final Function(String?)? onSaved;
+  final TextEditingController controller;
 
-  const CeslaPasswordTextField({super.key, this.onSaved});
+  const CeslaPasswordTextField({super.key, this.onSaved, required this.controller});
 
   @override
   State<CeslaPasswordTextField> createState() => _CeslaPasswordTextFieldState();
@@ -12,13 +13,12 @@ class CeslaPasswordTextField extends StatefulWidget {
 
 class _CeslaPasswordTextFieldState extends State<CeslaPasswordTextField> {
   bool isShowingPassword = false;
-  final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return CeslaTextField(
       labelText: 'Senha',
-      controller: _controller,
+      controller: widget.controller,
       onSaved: widget.onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {

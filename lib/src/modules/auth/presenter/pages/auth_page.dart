@@ -1,23 +1,34 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/services/injector/app_injector.dart';
-import '../controllers/login_controller.dart';
+import '../../../../core/routes/routes.dart';
+import '../stores/auth_store.dart';
 
-class LoginPage extends StatefulWidget {
-//final LoginController loginController;
+class AuthPage extends StatefulWidget {
+  final AuthStore authStore;
 
-  const LoginPage({
-    super.key,
-    // required this.loginController,
-  });
+  const AuthPage({super.key, required this.authStore});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final loginController = AppInjector.retrive<LoginController>();
+class _AuthPageState extends State<AuthPage> {
+  final formKey = GlobalKey<FormState>();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.authStore.addListener(() {
+      if (widget.authStore.value.isSuccess) {
+        context.go(Routes.dashboard.path);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 64),
         child: Form(
-          key: loginController.formKey,
+          key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -41,9 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: CeslaTextField(
                       labelText: 'Usuário',
                       prefixIcon: Icons.person_outline,
-                      onSaved: (value) {
-                        loginController.username = value!;
-                      },
+                      controller: usernameController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Campo obrigatório';
@@ -59,9 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Expanded(
                     child: CeslaPasswordTextField(
-                      onSaved: (value) {
-                        loginController.password = value!;
-                      },
+                      controller: passwordController,
                     ),
                   ),
                 ],
@@ -72,7 +79,10 @@ class _LoginPageState extends State<LoginPage> {
                   Expanded(
                     child: CeslaElevatedButton(
                       title: 'Entrar',
-                      onPressed: loginController.signIn,
+                      onPressed: () => widget.authStore.signIn(
+                        username: usernameController.text,
+                        password: passwordController.text,
+                      ),
                     ),
                   ),
                 ],
@@ -83,7 +93,10 @@ class _LoginPageState extends State<LoginPage> {
                   Expanded(
                     child: CeslaOutlinedButton(
                       title: 'Cadastar',
-                      onPressed: loginController.signUp,
+                      onPressed: () => widget.authStore.signUp(
+                        username: usernameController.text,
+                        password: passwordController.text,
+                      ),
                     ),
                   ),
                 ],

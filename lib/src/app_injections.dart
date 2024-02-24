@@ -3,7 +3,7 @@ import 'core/services/client/dio/factories/dio_factory.dart';
 import 'core/services/client/i_client_service.dart';
 import 'core/services/injector/app_injector.dart';
 import 'modules/auth/domain/repositories/auth_repository.dart';
-import 'modules/auth/presenter/controllers/login_controller.dart';
+import 'modules/auth/presenter/stores/auth_store.dart';
 
 class AppInjections {
   static void registerBinds() {
@@ -18,7 +18,9 @@ class AppInjections {
       ),
     );
     AppInjector.registerFactory(
-      LoginController(),
+      AuthStore(
+        AppInjector.retrive<AuthRepository>(),
+      ),
     );
   }
 }

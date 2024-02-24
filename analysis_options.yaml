@@ -24,3 +24,4 @@ linter:
     type_annotate_public_apis: true
     unnecessary_parenthesis: true
     use_named_constants: true
+    use_setters_to_change_properties: false
