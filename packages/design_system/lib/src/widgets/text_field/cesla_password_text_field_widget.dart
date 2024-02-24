@@ -2,8 +2,9 @@ import 'package:design_system/src/widgets/text_field/cesla_text_field_widget.dar
 import 'package:flutter/material.dart';
 
 class CeslaPasswordTextField extends StatefulWidget {
-  final String? initialValue;
-  const CeslaPasswordTextField({super.key, this.initialValue});
+  final Function(String?)? onSaved;
+
+  const CeslaPasswordTextField({super.key, this.onSaved});
 
   @override
   State<CeslaPasswordTextField> createState() => _CeslaPasswordTextFieldState();
@@ -11,16 +12,20 @@ class CeslaPasswordTextField extends StatefulWidget {
 
 class _CeslaPasswordTextFieldState extends State<CeslaPasswordTextField> {
   bool isShowingPassword = false;
+  final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return CeslaTextField(
       labelText: 'Senha',
-      controller: TextEditingController.fromValue(
-        TextEditingValue(
-          text: getInitialValue() ?? '',
-        ),
-      ),
+      controller: _controller,
+      onSaved: widget.onSaved,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Campo obrigatório';
+        }
+        return null;
+      },
       prefixIcon: Icons.lock_outline,
       suffixIcon: getSuffixIcon(),
       onPressedSuffix: () {
@@ -28,15 +33,8 @@ class _CeslaPasswordTextFieldState extends State<CeslaPasswordTextField> {
           isShowingPassword = !isShowingPassword;
         });
       },
+      obscureText: !isShowingPassword,
     );
-  }
-
-  String? getInitialValue() {
-    if (widget.initialValue == null) return null;
-
-    if (isShowingPassword) return widget.initialValue;
-
-    return widget.initialValue!.replaceAll(RegExp(r'.'), '*');
   }
 
   IconData getSuffixIcon() {

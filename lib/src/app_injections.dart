@@ -1,11 +1,24 @@
 import 'core/services/client/dio/dio_client_service.dart';
 import 'core/services/client/dio/factories/dio_factory.dart';
+import 'core/services/client/i_client_service.dart';
 import 'core/services/injector/app_injector.dart';
+import 'modules/auth/domain/repositories/auth_repository.dart';
+import 'modules/auth/presenter/controllers/login_controller.dart';
 
 class AppInjections {
   static void registerBinds() {
+    AppInjector.registerLazySingleton<IClientService>(
+      DioClientService(
+        dio: DioFactory.create(),
+      ),
+    );
     AppInjector.registerLazySingleton(
-      DioClientService(dio: DioFactory.create()),
+      AuthRepository(
+        clientService: AppInjector.retrive<IClientService>(),
+      ),
+    );
+    AppInjector.registerFactory(
+      LoginController(),
     );
   }
 }

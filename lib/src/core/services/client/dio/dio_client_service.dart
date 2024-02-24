@@ -18,6 +18,7 @@ class DioClientService implements IClientService {
     try {
       final response = await dio.delete(
         clientRequestDTO.path,
+        data: clientRequestDTO.data,
         queryParameters: clientRequestDTO.headers,
         options: Options(
           headers: clientRequestDTO.headers,
@@ -42,6 +43,7 @@ class DioClientService implements IClientService {
     try {
       final response = await dio.get(
         clientRequestDTO.path,
+        data: clientRequestDTO.data,
         queryParameters: clientRequestDTO.headers,
         options: Options(
           headers: clientRequestDTO.headers,
@@ -66,6 +68,7 @@ class DioClientService implements IClientService {
     try {
       final response = await dio.post(
         clientRequestDTO.path,
+        data: clientRequestDTO.data,
         queryParameters: clientRequestDTO.headers,
         options: Options(
           headers: clientRequestDTO.headers,
@@ -90,6 +93,7 @@ class DioClientService implements IClientService {
     try {
       final response = await dio.put(
         clientRequestDTO.path,
+        data: clientRequestDTO.data,
         queryParameters: clientRequestDTO.headers,
         options: Options(
           headers: clientRequestDTO.headers,

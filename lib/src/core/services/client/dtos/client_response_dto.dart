@@ -1,6 +1,6 @@
 class ClientResponseDTO {
   final int statusCode;
-  final Map<String, dynamic> body;
+  final dynamic body;
 
   const ClientResponseDTO({
     required this.statusCode,

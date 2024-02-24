@@ -8,6 +8,9 @@ class CeslaTextField extends StatelessWidget {
   final Function()? onPressedSuffix;
   final Function(String)? onChanged;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final Function(String?)? onSaved;
+  final bool obscureText;
 
   const CeslaTextField({
     super.key,
@@ -18,14 +21,21 @@ class CeslaTextField extends StatelessWidget {
     this.onPressedSuffix,
     this.onChanged,
     this.controller,
+    this.validator,
+    this.onSaved,
+    this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       initialValue: initialValue,
       controller: controller,
       onChanged: onChanged,
+      validator: validator,
+      onSaved: onSaved,
+      obscureText: obscureText,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         labelText: labelText,
