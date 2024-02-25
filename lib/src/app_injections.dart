@@ -1,7 +1,7 @@
 import 'core/services/client/dio/dio_client_service.dart';
 import 'core/services/client/dio/factories/dio_factory.dart';
 import 'core/services/client/i_client_service.dart';
-import 'core/services/injector/app_injector.dart';
+import 'core/services/injector/injector.dart';
 import 'modules/auth/data/repositories/i_auth_repository.dart';
 import 'modules/auth/domain/repositories/auth_repository.dart';
 import 'modules/auth/presenter/stores/auth_store.dart';
@@ -11,29 +11,29 @@ import 'modules/dashboard/submodules/menu/presenter/stores/menu_store.dart';
 
 class AppInjections {
   static void registerBinds() {
-    AppInjector.registerLazySingleton<IClientService>(
+    Injector.registerLazySingleton<IClientService>(
       DioClientService(
         dio: DioFactory.create(),
       ),
     );
-    AppInjector.registerLazySingleton<IAuthRepository>(
+    Injector.registerLazySingleton<IAuthRepository>(
       AuthRepository(
-        clientService: AppInjector.retrive<IClientService>(),
+        clientService: Injector.retrive<IClientService>(),
       ),
     );
-    AppInjector.registerFactory<AuthStore>(
+    Injector.registerFactory<AuthStore>(
       AuthStore(
-        AppInjector.retrive<IAuthRepository>(),
+        Injector.retrive<IAuthRepository>(),
       ),
     );
-    AppInjector.registerLazySingleton<IMenuRepository>(
+    Injector.registerLazySingleton<IMenuRepository>(
       MenuRepository(
-        clientService: AppInjector.retrive<IClientService>(),
+        clientService: Injector.retrive<IClientService>(),
       ),
     );
-    AppInjector.registerFactory<MenuStore>(
+    Injector.registerFactory<MenuStore>(
       MenuStore(
-        AppInjector.retrive<IMenuRepository>(),
+        Injector.retrive<IMenuRepository>(),
       ),
     );
   }
