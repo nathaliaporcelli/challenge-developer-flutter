@@ -14,10 +14,12 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<void> signUpUser(SignUpDTO dto) async {
+    final data = SignUpDTOAdapter.toMap(dto);
+
     final response = await clientService.post(
       ClientRequestDTO(
         path: 'login/',
-        data: SignUpDTOAdapter.toMap(dto),
+        data: data,
       ),
     );
 
@@ -26,19 +28,18 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<void> signInUser(SignInDTO dto) async {
+    final data = SignInDTOAdapter.toMap(dto);
+
     final response = await clientService.get(
       ClientRequestDTO(
         path: 'login/',
-        data: SignInDTOAdapter.toMap(dto),
+        data: data,
       ),
     );
 
-    final usersList = response.body as List;
+    final usersList = List<Map<String, dynamic>>.from(response.body);
+    final userExists = usersList.any((user) => user['username'] == dto.username && user['password'] == dto.password);
 
-    if (usersList.every((user) => user['username'] != dto.username && user['password'] != dto.password)) {
-      throw UserNotFoundException(
-        message: 'Usuário ou senha inválidos',
-      );
-    }
+    if (!userExists) throw const UserNotFoundException();
   }
 }

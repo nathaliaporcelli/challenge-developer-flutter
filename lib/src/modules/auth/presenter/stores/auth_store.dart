@@ -22,9 +22,9 @@ class AuthStore extends ValueNotifier<AuthState> {
     try {
       _setValue(AuthLoadingState());
 
-      await authRepository.signInUser(
-        SignInDTO(username: username, password: password),
-      );
+      final signInDTO = SignInDTO(username: username, password: password);
+
+      await authRepository.signInUser(signInDTO);
 
       _setValue(AuthSuccessState());
     } on CeslaException catch (e) {
@@ -39,9 +39,9 @@ class AuthStore extends ValueNotifier<AuthState> {
     try {
       _setValue(AuthLoadingState());
 
-      authRepository.signUpUser(
-        SignUpDTO(username: username, password: password),
-      );
+      final signUpDTO = SignUpDTO(username: username, password: password);
+
+      authRepository.signUpUser(signUpDTO);
 
       _setValue(AuthSuccessState());
     } on CeslaException catch (e) {
