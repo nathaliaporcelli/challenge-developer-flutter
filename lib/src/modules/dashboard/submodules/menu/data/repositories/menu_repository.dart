@@ -1,10 +1,10 @@
 import '../../../../../../core/services/client/dtos/client_request_dto.dart';
 import '../../../../../../core/services/client/i_client_service.dart';
-import '../../data/adapters/dtos/student_dto_adapter.dart';
-import '../../data/adapters/entities/student_entity_adapter.dart';
-import '../../data/repositories/i_menu_repository.dart';
-import '../dtos/student_dto.dart';
-import '../entities/student_entity.dart';
+import '../../domain/dtos/student_dto.dart';
+import '../../domain/entities/student_entity.dart';
+import '../../domain/repositories/i_menu_repository.dart';
+import '../adapters/dtos/student_dto_adapter.dart';
+import '../adapters/entities/student_entity_adapter.dart';
 
 class MenuRepository implements IMenuRepository {
   final IClientService clientService;

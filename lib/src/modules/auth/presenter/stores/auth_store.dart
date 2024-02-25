@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/exceptions/cesla_exceptions.dart';
-import '../../data/repositories/i_auth_repository.dart';
 import '../../domain/dtos/sign_in_dto.dart';
 import '../../domain/dtos/sign_up_dto.dart';
+import '../../domain/repositories/i_auth_repository.dart';
 import 'states/auth_state.dart';
 
 class AuthStore extends ValueNotifier<AuthState> {

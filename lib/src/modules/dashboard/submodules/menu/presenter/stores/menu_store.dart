@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/exceptions/cesla_exceptions.dart';
-import '../../data/repositories/i_menu_repository.dart';
 import '../../domain/dtos/student_dto.dart';
 import '../../domain/entities/student_entity.dart';
+import '../../domain/repositories/i_menu_repository.dart';
 import 'states/menu_state.dart';
 
 class MenuStore extends ValueNotifier<MenuState> {
