@@ -46,9 +46,8 @@ class _AuthPageState extends State<AuthPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Image.asset(
-                CeslaImages.icon.path,
-                package: 'design_system',
+              CeslaImage(
+                path: CeslaImages.icon.path,
               ),
               const SizedBox(height: 48),
               CeslaTextField(
