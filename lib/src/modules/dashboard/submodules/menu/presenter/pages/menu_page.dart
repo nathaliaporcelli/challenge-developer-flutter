@@ -63,8 +63,17 @@ class _MenuPageState extends State<MenuPage> {
                       itemBuilder: (__, index) => StudentCard(
                         student: fetchStudents.value.asSuccess.students[index],
                         onTapDelete: () async {
-                          await widget.menuStore.deleteStudentById(fetchStudents.value.asSuccess.students[index].id);
-                          await widget.menuStore.getAllStudents();
+                          CeslaConfirmDialog.show(
+                            context: context,
+                            title: 'Excluir aluno',
+                            confirmText: 'Excluir aluno',
+                            message:
+                                'Tem certeza que deseja excluir esse aluno? Todas as informações dele serão apagadas.',
+                            onConfirm: () {
+                              widget.menuStore.deleteStudentById(fetchStudents.value.asSuccess.students[index].id);
+                              context.pop();
+                            },
+                          );
                         },
                         onTapEdit: () {
                           context.pushNamed(

@@ -8,13 +8,4 @@ extension StringExtension on String {
       int.parse(date[0]),
     );
   }
-
-  String formatToCPF() {
-    String formatedCpf = replaceFirstMapped(
-      RegExp(r'(\d{3})(\d{3})(\d{3})(\d{2})'),
-      (match) => '${match[1]}.${match[2]}.${match[3]}-${match[4]}',
-    );
-
-    return formatedCpf;
-  }
 }

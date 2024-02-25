@@ -30,6 +30,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
   final cpfController = TextEditingController();
   final academicRecordController = TextEditingController();
   final emailController = TextEditingController();
+  bool triedSendInvalidForm = false;
 
   @override
   void initState() {
@@ -39,9 +40,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
 
     if (isEdit) {
       nameController.text = widget.studentEntity!.name;
-      if (widget.studentEntity!.birthDate != null) {
-        dateController.text = widget.studentEntity!.birthDate!.formatToDDMMYYYY();
-      }
+      dateController.text = widget.studentEntity!.birthDate!.formatToDDMMYYYY();
       cpfController.text = widget.studentEntity!.cpf;
       academicRecordController.text = widget.studentEntity!.academicRecord;
       emailController.text = widget.studentEntity!.email;
@@ -72,6 +71,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
         child: Form(
           key: formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: ListView(
@@ -85,6 +85,16 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
                       ),
                     ),
                     const SizedBox(height: 16),
+                    if (triedSendInvalidForm)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: Text(
+                          'Você precisa preencher os campos obrigatórios!',
+                          style: context.texts.label.copyWith(
+                            color: context.colors.error,
+                          ),
+                        ),
+                      ),
                     CeslaTextField(
                       labelText: 'Nome do aluno*',
                       prefixIcon: Icons.person_outline,
@@ -94,16 +104,18 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
                     const SizedBox(height: 16),
                     CeslaDateTextField(
                       controller: dateController,
+                      validator: isNotEmpty,
                     ),
                     const SizedBox(height: 16),
                     CeslaTextField(
                       labelText: 'CPF*',
+                      keyboardType: TextInputType.number,
                       prefixIcon: Icons.person_outline,
                       controller: cpfController,
-                      onChanged: (value) {
-                        cpfController.text = value.formatToCPF();
-                      },
-                      validator: isNotEmpty,
+                      inputFormatters: [
+                        CeslaCPFFormatter(),
+                      ],
+                      validator: isCPF,
                     ),
                     const SizedBox(height: 16),
                     CeslaTextField(
@@ -124,7 +136,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
                       labelText: 'E-mail*',
                       prefixIcon: Icons.person_outline,
                       controller: emailController,
-                      validator: isNotEmpty,
+                      validator: isEmail,
                     ),
                   ],
                 ),
@@ -155,6 +167,18 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
   Listenable get listenable => isEdit ? widget.menuStore.editStudents : widget.menuStore.createStudents;
 
   Future<void> onSave() async {
+    if (!formKey.currentState!.validate()) {
+      return setState(() {
+        triedSendInvalidForm = true;
+      });
+    }
+
+    setState(() {
+      triedSendInvalidForm = false;
+    });
+
+    formKey.currentState!.save();
+
     if (isEdit) {
       await widget.menuStore.editStudent(
         widget.studentEntity!.id,

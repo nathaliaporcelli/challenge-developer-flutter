@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../common/extensions/context_theme_extensions.dart';
 
@@ -12,6 +13,8 @@ class CeslaTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Function(String?)? onSaved;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
   final bool obscureText;
   final VoidCallback? onTap;
   final bool readOnly;
@@ -30,11 +33,15 @@ class CeslaTextField extends StatelessWidget {
     this.obscureText = false,
     this.onTap,
     this.readOnly = false,
+    this.keyboardType,
+    this.inputFormatters,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
       onTap: onTap,
       readOnly: readOnly,
       autovalidateMode: AutovalidateMode.onUserInteraction,

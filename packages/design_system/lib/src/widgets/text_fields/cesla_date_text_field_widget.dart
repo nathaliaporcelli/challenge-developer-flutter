@@ -4,10 +4,12 @@ import '../../../design_system.dart';
 
 class CeslaDateTextField extends StatelessWidget {
   final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   const CeslaDateTextField({
     super.key,
     required this.controller,
+    this.validator,
   });
 
   @override
@@ -17,6 +19,7 @@ class CeslaDateTextField extends StatelessWidget {
       prefixIcon: Icons.person_outline,
       controller: controller,
       readOnly: true,
+      validator: validator,
       suffixIcon: Icons.date_range_rounded,
       onTap: () async {
         final date = await showDatePicker(

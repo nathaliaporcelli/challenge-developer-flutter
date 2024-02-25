@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CeslaThemeColors {
   static const primary = Color(0xff166281);
   static const white = Color(0xffffffff);
+  static const grey = Color.fromARGB(255, 95, 95, 95);
   static const black = Color(0xff27262a);
   static const red = Colors.red;
 }
