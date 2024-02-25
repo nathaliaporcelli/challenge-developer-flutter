@@ -2,66 +2,72 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/exceptions/cesla_exceptions.dart';
 import '../../domain/dtos/student_dto.dart';
-import '../../domain/entities/student_entity.dart';
 import '../../domain/repositories/i_menu_repository.dart';
-import 'states/menu_state.dart';
+import 'states/create_students_state.dart';
+import 'states/delete_students_state.dart';
+import 'states/edit_students_state.dart';
+import 'states/fetch_students_state.dart';
 
-class MenuStore extends ValueNotifier<MenuState> {
+class MenuStore {
   final IMenuRepository menuRepository;
 
-  MenuStore(this.menuRepository) : super(MenuInitialState());
+  final fetchStudents = ValueNotifier<FetchStudentsState>(FetchStudentsInitialState());
+  final createStudents = ValueNotifier<CreateStudentsState>(CreateStudentsInitialState());
+  final editStudents = ValueNotifier<EditStudentsState>(EditStudentsInitialState());
+  final deleteStudents = ValueNotifier<DeleteStudentsState>(DeleteStudentsInitialState());
 
-  List<StudentEntity> students = [];
-
-  void _setValue(MenuState state) {
-    value = state;
-  }
+  MenuStore({required this.menuRepository});
 
   Future<void> getAllStudents() async {
     try {
-      _setValue(MenuLoadingState());
+      fetchStudents.value = FetchStudentsLoadingState();
 
-      students = await menuRepository.getAllStudents();
+      final students = await menuRepository.getAllStudents();
 
-      _setValue(MenuSuccessState(students));
+      fetchStudents.value = FetchStudentsSuccessState(students);
     } on CeslaException catch (e) {
-      _setValue(MenuErrorState(e));
+      fetchStudents.value = FetchStudentsErrorState(e);
     }
   }
 
-  Future<void> addStudent(StudentDTO dto) async {
+  Future<void> createStudent(StudentDTO dto) async {
     try {
-      _setValue(MenuLoadingState());
+      createStudents.value = CreateStudentsLoadingState();
 
       await menuRepository.postStudent(dto);
 
-      _setValue(MenuSuccessState(students));
+      createStudents.value = CreateStudentsSuccessState();
+
+      await getAllStudents();
     } on CeslaException catch (e) {
-      _setValue(MenuErrorState(e));
+      createStudents.value = CreateStudentsErrorState(e);
     }
   }
 
   Future<void> editStudent(int studentId, StudentDTO student) async {
     try {
-      _setValue(MenuLoadingState());
+      editStudents.value = EditStudentsLoadingState();
 
       await menuRepository.putStudent(studentId, student);
 
-      _setValue(MenuSuccessState(students));
+      editStudents.value = EditStudentsSuccessState();
+      await getAllStudents();
     } on CeslaException catch (e) {
-      _setValue(MenuErrorState(e));
+      editStudents.value = EditStudentsErrorState(e);
     }
   }
 
   Future<void> deleteStudentById(int id) async {
     try {
-      _setValue(MenuLoadingState());
+      deleteStudents.value = DeleteStudentsLoadingState();
 
       await menuRepository.deleteStudentById(id);
 
-      _setValue(MenuSuccessState(students));
+      deleteStudents.value = DeleteStudentsSuccessState();
+
+      await getAllStudents();
     } on CeslaException catch (e) {
-      _setValue(MenuErrorState(e));
+      deleteStudents.value = DeleteStudentsErrorState(e);
     }
   }
 }

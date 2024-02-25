@@ -33,7 +33,7 @@ class AppInjections {
     );
     Injector.registerFactory<MenuStore>(
       MenuStore(
-        Injector.retrive<IMenuRepository>(),
+        menuRepository: Injector.retrive<IMenuRepository>(),
       ),
     );
   }

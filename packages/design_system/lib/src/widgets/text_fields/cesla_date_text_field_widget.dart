@@ -17,6 +17,7 @@ class CeslaDateTextField extends StatelessWidget {
       prefixIcon: Icons.person_outline,
       controller: controller,
       readOnly: true,
+      suffixIcon: Icons.date_range_rounded,
       onTap: () async {
         final date = await showDatePicker(
           context: context,

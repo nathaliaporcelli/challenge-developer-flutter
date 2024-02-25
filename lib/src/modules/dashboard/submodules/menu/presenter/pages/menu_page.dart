@@ -24,9 +24,9 @@ class _MenuPageState extends State<MenuPage> {
 
     widget.menuStore.getAllStudents();
 
-    widget.menuStore.addListener(() {
-      if (widget.menuStore.value.isError) {
-        final errorMessage = widget.menuStore.value.asError.exception.message;
+    widget.menuStore.fetchStudents.addListener(() {
+      if (widget.menuStore.fetchStudents.value.isError) {
+        final errorMessage = widget.menuStore.fetchStudents.value.asError.exception.message;
 
         CeslaErrorToast.show(context, errorMessage);
       }
@@ -35,6 +35,8 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
+    final fetchStudents = widget.menuStore.fetchStudents;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const MenuAppBar(title: 'Alunos'),
@@ -51,30 +53,31 @@ class _MenuPageState extends State<MenuPage> {
             ),
             Expanded(
               child: ListenableBuilder(
-                listenable: widget.menuStore,
+                listenable: fetchStudents,
                 builder: (context, child) {
-                  if (widget.menuStore.value.isLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                  if (fetchStudents.value.isSuccess) {
+                    return ListView.separated(
+                      padding: const EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 80),
+                      itemCount: fetchStudents.value.asSuccess.students.length,
+                      separatorBuilder: (__, _) => const SizedBox(height: 16),
+                      itemBuilder: (__, index) => StudentCard(
+                        student: fetchStudents.value.asSuccess.students[index],
+                        onTapDelete: () async {
+                          await widget.menuStore.deleteStudentById(fetchStudents.value.asSuccess.students[index].id);
+                          await widget.menuStore.getAllStudents();
+                        },
+                        onTapEdit: () {
+                          context.pushNamed(
+                            Routes.addEditStudent.name,
+                            extra: fetchStudents.value.asSuccess.students[index],
+                          );
+                        },
+                      ),
                     );
                   }
-                  return ListView.separated(
-                    padding: const EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 80),
-                    itemCount: widget.menuStore.students.length,
-                    separatorBuilder: (__, _) => const SizedBox(height: 16),
-                    itemBuilder: (__, index) => StudentCard(
-                      student: widget.menuStore.students[index],
-                      onTapDelete: () async {
-                        await widget.menuStore.deleteStudentById(widget.menuStore.students[index].id);
-                        await widget.menuStore.getAllStudents();
-                      },
-                      onTapEdit: () {
-                        context.pushNamed(
-                          Routes.addEditStudent.name,
-                          extra: widget.menuStore.students[index],
-                        );
-                      },
-                    ),
+
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
                 },
               ),

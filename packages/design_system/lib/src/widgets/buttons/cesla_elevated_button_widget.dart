@@ -7,12 +7,14 @@ class CeslaElevatedButton extends StatelessWidget {
   final String title;
   final Function() onPressed;
   final double heigth;
+  final bool isLoading;
 
   const CeslaElevatedButton({
     super.key,
     required this.title,
     required this.onPressed,
     this.heigth = 48,
+    this.isLoading = false,
   });
 
   @override
@@ -25,12 +27,21 @@ class CeslaElevatedButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: CeslaThemeColors.primary,
         ),
-        child: Text(
-          title,
-          style: context.texts.label.copyWith(
-            color: CeslaThemeColors.white,
-          ),
-        ),
+        child: isLoading
+            ? const SizedBox(
+                height: 24,
+                width: 24,
+                child: CircularProgressIndicator(
+                  color: CeslaThemeColors.white,
+                  strokeWidth: 2,
+                ),
+              )
+            : Text(
+                title,
+                style: context.texts.label.copyWith(
+                  color: CeslaThemeColors.white,
+                ),
+              ),
       ),
     );
   }

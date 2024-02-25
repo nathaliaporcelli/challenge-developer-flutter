@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/mixins/validation_mixin.dart';
 import '../../domain/dtos/student_dto.dart';
@@ -45,6 +46,8 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
       academicRecordController.text = widget.studentEntity!.academicRecord;
       emailController.text = widget.studentEntity!.email;
     }
+
+    listenable.addListener(listenerFunciton);
   }
 
   @override
@@ -54,6 +57,9 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
     cpfController.dispose();
     academicRecordController.dispose();
     emailController.dispose();
+
+    listenable.removeListener(listenerFunciton);
+
     super.dispose();
   }
 
@@ -94,6 +100,9 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
                       labelText: 'CPF*',
                       prefixIcon: Icons.person_outline,
                       controller: cpfController,
+                      onChanged: (value) {
+                        cpfController.text = value.formatToCPF();
+                      },
                       validator: isNotEmpty,
                     ),
                     const SizedBox(height: 16),
@@ -120,9 +129,14 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
                   ],
                 ),
               ),
-              CeslaElevatedButton(
-                title: isEdit ? 'Editar' : 'Adicionar',
-                onPressed: onSave,
+              ListenableBuilder(
+                listenable: listenable,
+                builder: (context, child) => CeslaElevatedButton(
+                  title: isEdit ? 'Salvar edições' : 'Adicionar',
+                  onPressed: onSave,
+                  isLoading:
+                      widget.menuStore.editStudents.value.isLoading || widget.menuStore.createStudents.value.isLoading,
+                ),
               ),
               const SizedBox(height: 24),
             ],
@@ -131,6 +145,14 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
       ),
     );
   }
+
+  void listenerFunciton() {
+    if (widget.menuStore.editStudents.value.isSuccess || widget.menuStore.createStudents.value.isSuccess) {
+      context.pop();
+    }
+  }
+
+  Listenable get listenable => isEdit ? widget.menuStore.editStudents : widget.menuStore.createStudents;
 
   Future<void> onSave() async {
     if (isEdit) {
@@ -147,7 +169,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
       return;
     }
 
-    await widget.menuStore.addStudent(
+    await widget.menuStore.createStudent(
       StudentDTO(
         name: nameController.text,
         email: emailController.text,
