@@ -21,17 +21,6 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<StudentEntity> getStudentById(int id) async {
-    final response = await clientService.get(
-      ClientRequestDTO(
-        path: 'student/$id',
-      ),
-    );
-
-    return StudentEntityAdapter.fromMap(response.body);
-  }
-
-  @override
   Future<List<StudentEntity>> getAllStudents() async {
     final response = await clientService.get(
       const ClientRequestDTO(
@@ -39,7 +28,13 @@ class MenuRepository implements IMenuRepository {
       ),
     );
 
-    final List<StudentEntity> userList = response.body.map(StudentEntityAdapter.fromMap).toList();
+    final List<StudentEntity> userList = response.body
+        .map(
+          (dynamic item) => StudentEntityAdapter.fromMap(
+            item as Map<String, dynamic>,
+          ),
+        )
+        .toList();
 
     return userList;
   }

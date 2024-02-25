@@ -7,6 +7,7 @@ import 'modules/auth/domain/repositories/auth_repository.dart';
 import 'modules/auth/presenter/stores/auth_store.dart';
 import 'modules/dashboard/submodules/menu/data/repositories/i_menu_repository.dart';
 import 'modules/dashboard/submodules/menu/domain/repositories/menu_repository.dart';
+import 'modules/dashboard/submodules/menu/presenter/stores/menu_store.dart';
 
 class AppInjections {
   static void registerBinds() {
@@ -20,7 +21,7 @@ class AppInjections {
         clientService: AppInjector.retrive<IClientService>(),
       ),
     );
-    AppInjector.registerFactory(
+    AppInjector.registerFactory<AuthStore>(
       AuthStore(
         AppInjector.retrive<IAuthRepository>(),
       ),
@@ -28,6 +29,11 @@ class AppInjections {
     AppInjector.registerLazySingleton<IMenuRepository>(
       MenuRepository(
         clientService: AppInjector.retrive<IClientService>(),
+      ),
+    );
+    AppInjector.registerFactory<MenuStore>(
+      MenuStore(
+        AppInjector.retrive<IMenuRepository>(),
       ),
     );
   }

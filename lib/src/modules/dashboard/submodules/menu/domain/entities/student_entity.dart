@@ -1,7 +1,7 @@
 class StudentEntity {
   final int id;
   final String name;
-  final DateTime birthDate;
+  final DateTime? birthDate;
   final String cpf;
   final String academicRecord;
   final String email;

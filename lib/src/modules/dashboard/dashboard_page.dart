@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../core/extensions/context_extensions.dart';
 import 'submodules/menu/presenter/pages/menu_page.dart';
+import 'submodules/menu/presenter/stores/menu_store.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+  final MenuStore menuStore;
+
+  const DashboardPage({super.key, required this.menuStore});
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -34,8 +37,8 @@ class _DashboardPageState extends State<DashboardPage> {
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: _pageController,
-              children: const [
-                MenuPage(),
+              children: [
+                MenuPage(menuStore: widget.menuStore),
               ],
             ),
           ),
