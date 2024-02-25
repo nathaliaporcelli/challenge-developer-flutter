@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/extensions/context_extensions.dart';
-import 'presenter/pages/menu_page.dart';
+import '../../core/extensions/context_extensions.dart';
+import 'submodules/menu/presenter/pages/menu_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

@@ -2,7 +2,7 @@ import '../../../../core/services/client/dtos/client_request_dto.dart';
 import '../../../../core/services/client/i_client_service.dart';
 import '../../data/adapters/dtos/sign_in_dto_adapter.dart';
 import '../../data/adapters/dtos/sign_up_dto_adapter.dart';
-import '../../data/repositories/auth/i_auth_repository.dart';
+import '../../data/repositories/i_auth_repository.dart';
 import '../dtos/sign_in_dto.dart';
 import '../dtos/sign_up_dto.dart';
 import '../exceptions/user_not_found_exception.dart';

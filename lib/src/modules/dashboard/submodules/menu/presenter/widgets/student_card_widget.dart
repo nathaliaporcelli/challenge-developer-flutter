@@ -48,24 +48,32 @@ class StudentCard extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                width: 30,
-                height: 30,
+              Material(
                 child: InkWell(
+                  borderRadius: BorderRadius.circular(18),
                   onTap: () {},
-                  child: Icon(
-                    Icons.edit_outlined,
-                    color: context.colors.secondary,
+                  child: SizedBox(
+                    height: 36,
+                    width: 36,
+                    child: Icon(
+                      Icons.edit_outlined,
+                      color: context.colors.secondary,
+                    ),
                   ),
                 ),
               ),
-              IconButton(
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-                onPressed: () {},
-                icon: Icon(
-                  Icons.delete_outline,
-                  color: context.colors.secondary,
+              Material(
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(18),
+                  onTap: () {},
+                  child: SizedBox(
+                    height: 36,
+                    width: 36,
+                    child: Icon(
+                      Icons.delete_outline,
+                      color: context.colors.secondary,
+                    ),
+                  ),
                 ),
               ),
             ],
