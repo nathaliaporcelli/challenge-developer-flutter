@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common/colors/cesla_color_scheme.dart';
-import '../../common/extensions/cesla_text_styles_extension.dart';
+import '../../common/extensions/context_theme_extensions.dart';
 
 class CeslaOutlinedButton extends StatelessWidget {
   final String title;
@@ -29,9 +29,9 @@ class CeslaOutlinedButton extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: Theme.of(context).extension<CeslaTextStylesExtension>()!.label.copyWith(
-                color: CeslaThemeColors.primary,
-              ),
+          style: context.texts.label.copyWith(
+            color: CeslaThemeColors.primary,
+          ),
         ),
       ),
     );

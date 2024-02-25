@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../common/extensions/context_theme_extensions.dart';
+
 class CeslaTextField extends StatelessWidget {
   final String labelText;
   final String? initialValue;
@@ -38,13 +40,16 @@ class CeslaTextField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
-        errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: context.colors.error,
+          ),
         ),
-        errorStyle: const TextStyle(
-          color: Colors.red,
+        errorStyle: TextStyle(
+          color: context.colors.error,
         ),
         labelText: labelText,
+        labelStyle: context.texts.label,
         prefixIcon: getPrefixIcon(),
         suffixIcon: getSuffixIcon(),
       ),

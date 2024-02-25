@@ -1,6 +1,6 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/extensions/context_extensions.dart';
 import 'submodules/menu/presenter/pages/menu_page.dart';
 import 'submodules/menu/presenter/stores/menu_store.dart';
 

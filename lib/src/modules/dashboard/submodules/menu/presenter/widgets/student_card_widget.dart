@@ -1,6 +1,6 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/extensions/context_extensions.dart';
 import '../../domain/entities/student_entity.dart';
 
 class StudentCard extends StatelessWidget {
