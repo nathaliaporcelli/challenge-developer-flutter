@@ -5,7 +5,6 @@ class CeslaTextStylesExtension extends ThemeExtension<CeslaTextStylesExtension> 
   final TextStyle header;
   final TextStyle subHeader;
   final TextStyle label;
-  final TextStyle darkLabel;
   final TextStyle caption;
 
   CeslaTextStylesExtension({
@@ -13,7 +12,6 @@ class CeslaTextStylesExtension extends ThemeExtension<CeslaTextStylesExtension> 
     required this.header,
     required this.subHeader,
     required this.label,
-    required this.darkLabel,
     required this.caption,
   });
 
@@ -23,7 +21,6 @@ class CeslaTextStylesExtension extends ThemeExtension<CeslaTextStylesExtension> 
     TextStyle? header,
     TextStyle? subHeader,
     TextStyle? label,
-    TextStyle? darkLabel,
     TextStyle? caption,
   }) {
     return CeslaTextStylesExtension(
@@ -31,7 +28,6 @@ class CeslaTextStylesExtension extends ThemeExtension<CeslaTextStylesExtension> 
       header: header ?? this.header,
       subHeader: subHeader ?? this.subHeader,
       label: label ?? this.label,
-      darkLabel: darkLabel ?? this.darkLabel,
       caption: caption ?? this.caption,
     );
   }

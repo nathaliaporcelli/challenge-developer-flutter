@@ -18,6 +18,7 @@ class CeslaElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: heigth,
+      width: double.maxFinite,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(

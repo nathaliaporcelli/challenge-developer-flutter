@@ -27,12 +27,7 @@ class CeslaTheme {
           ),
           label: GoogleFonts.inter(
             fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: CeslaThemeColors.black,
-          ),
-          darkLabel: GoogleFonts.inter(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
             color: CeslaThemeColors.black,
           ),
           caption: GoogleFonts.inter(

@@ -18,6 +18,7 @@ class CeslaOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: heigth,
+      width: double.maxFinite,
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(

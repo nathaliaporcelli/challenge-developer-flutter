@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/routes/routes.dart';
 import '../stores/auth_store.dart';
+import 'widgets/account_recovery_text_widget.dart';
 
 class AuthPage extends StatefulWidget {
   final AuthStore authStore;
@@ -50,54 +51,32 @@ class _AuthPageState extends State<AuthPage> {
                 package: 'design_system',
               ),
               const SizedBox(height: 48),
-              Row(
-                children: [
-                  Expanded(
-                    child: CeslaTextField(
-                      labelText: 'Usuário',
-                      prefixIcon: Icons.person_outline,
-                      controller: usernameController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Campo obrigatório';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ],
+              CeslaTextField(
+                labelText: 'Usuário',
+                prefixIcon: Icons.person_outline,
+                controller: usernameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Campo obrigatório';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: CeslaPasswordTextField(
-                      controller: passwordController,
-                    ),
-                  ),
-                ],
+              CeslaPasswordTextField(
+                controller: passwordController,
               ),
+              const SizedBox(height: 8),
+              const AccountRecoveryText(),
               const SizedBox(height: 64),
-              Row(
-                children: [
-                  Expanded(
-                    child: CeslaElevatedButton(
-                      title: 'Entrar',
-                      onPressed: signIn,
-                    ),
-                  ),
-                ],
+              CeslaElevatedButton(
+                title: 'Entrar',
+                onPressed: signIn,
               ),
               const SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: CeslaOutlinedButton(
-                      title: 'Cadastar',
-                      onPressed: signUp,
-                    ),
-                  ),
-                ],
+              CeslaOutlinedButton(
+                title: 'Cadastar',
+                onPressed: signUp,
               ),
             ],
           ),
