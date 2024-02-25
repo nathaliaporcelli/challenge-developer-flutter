@@ -61,7 +61,7 @@ class StudentCard extends StatelessWidget {
               Material(
                 child: InkWell(
                   borderRadius: BorderRadius.circular(18),
-                  onTap: () {},
+                  onTap: onTapEdit,
                   child: SizedBox(
                     height: 36,
                     width: 36,

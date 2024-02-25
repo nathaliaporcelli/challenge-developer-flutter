@@ -29,11 +29,23 @@ class MenuStore extends ValueNotifier<MenuState> {
     }
   }
 
-  Future<void> postStudent(StudentDTO dto) async {
+  Future<void> addStudent(StudentDTO dto) async {
     try {
       _setValue(MenuLoadingState());
 
       await menuRepository.postStudent(dto);
+
+      _setValue(MenuSuccessState(students));
+    } on CeslaException catch (e) {
+      _setValue(MenuErrorState(e));
+    }
+  }
+
+  Future<void> editStudent(int studentId, StudentDTO student) async {
+    try {
+      _setValue(MenuLoadingState());
+
+      await menuRepository.putStudent(studentId, student);
 
       _setValue(MenuSuccessState(students));
     } on CeslaException catch (e) {

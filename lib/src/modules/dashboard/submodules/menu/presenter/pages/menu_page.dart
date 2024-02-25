@@ -1,6 +1,8 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../../core/routes/routes.dart';
 import '../stores/menu_store.dart';
 import '../widgets/float_action_add_student_widget.dart';
 import '../widgets/menu_app_bar.dart';
@@ -66,7 +68,12 @@ class _MenuPageState extends State<MenuPage> {
                         await widget.menuStore.deleteStudentById(widget.menuStore.students[index].id);
                         await widget.menuStore.getAllStudents();
                       },
-                      onTapEdit: () {},
+                      onTapEdit: () {
+                        context.pushNamed(
+                          Routes.addEditStudent.name,
+                          extra: widget.menuStore.students[index],
+                        );
+                      },
                     ),
                   );
                 },
@@ -75,7 +82,9 @@ class _MenuPageState extends State<MenuPage> {
           ],
         ),
       ),
-      floatingActionButton: const FloatActionAddStudent(),
+      floatingActionButton: FloatActionAddStudent(
+        onTap: () => context.pushNamed(Routes.addEditStudent.name),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

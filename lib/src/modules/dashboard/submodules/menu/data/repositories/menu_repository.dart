@@ -33,6 +33,18 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
+  Future<void> putStudent(int id, StudentDTO studentDto) async {
+    final data = StudentDTOAdapter.toMap(studentDto);
+
+    final dto = ClientRequestDTO(
+      path: 'student/$id',
+      data: data,
+    );
+
+    await clientService.put(dto);
+  }
+
+  @override
   Future<void> postStudent(StudentDTO dto) async {
     final studentDto = StudentDTOAdapter.toMap(dto);
 
