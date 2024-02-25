@@ -28,12 +28,8 @@ class MenuRepository implements IMenuRepository {
       ),
     );
 
-    final List<StudentEntity> userList = response.body
-        .map(
-          (dynamic item) => StudentEntityAdapter.fromMap(
-            item as Map<String, dynamic>,
-          ),
-        )
+    final userList = (response.body as List<dynamic>)
+        .map((dynamic item) => StudentEntityAdapter.fromMap(item as Map<String, dynamic>))
         .toList();
 
     return userList;

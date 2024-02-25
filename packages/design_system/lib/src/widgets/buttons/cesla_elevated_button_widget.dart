@@ -1,6 +1,7 @@
-import 'package:design_system/src/common/colors/cesla_color_scheme.dart';
-import 'package:design_system/src/common/extensions/cesla_text_styles_extension.dart';
 import 'package:flutter/material.dart';
+
+import '../../common/colors/cesla_color_scheme.dart';
+import '../../common/extensions/cesla_text_styles_extension.dart';
 
 class CeslaElevatedButton extends StatelessWidget {
   final String title;

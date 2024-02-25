@@ -21,7 +21,7 @@ class ApplicationSystemChromeSettings extends SystemUiOverlayStyle {
     systemNavigationBarDividerColor: Color(0x00000000),
   );
 
-  static setSystemUIMode() {
+  static void setSystemUIMode() {
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.edgeToEdge,
       overlays: [SystemUiOverlay.top],

@@ -5,9 +5,9 @@ class StudentEntityAdapter {
     return StudentEntity(
       id: int.parse(map['id']),
       name: map['name'],
-      birthDate: map['birthDate'] != null ? DateTime.fromMillisecondsSinceEpoch(map['birthDate']) : null,
+      birthDate: map['birthdate'] != null ? DateTime.parse(map['birthdate']) : null,
       cpf: map['cpf'].toString(),
-      academicRecord: map['academicRecord'].toString(),
+      academicRecord: map['academic_record'].toString(),
       email: map['email'],
     );
   }

@@ -36,24 +36,44 @@ class _MenuPageState extends State<MenuPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const MenuAppBar(title: 'Alunos'),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 16, right: 16, top: 16),
-            child: CeslaTextField(
-              labelText: 'Buscar...',
-              prefixIcon: Icons.search,
+      body: RefreshIndicator(
+        onRefresh: () => widget.menuStore.getAllStudents(),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+              child: CeslaTextField(
+                labelText: 'Buscar...',
+                prefixIcon: Icons.search,
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.separated(
-              padding: const EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 80),
-              itemCount: 10,
-              separatorBuilder: (__, _) => const SizedBox(height: 16),
-              itemBuilder: (__, _) => const StudentCard(),
+            Expanded(
+              child: ListenableBuilder(
+                listenable: widget.menuStore,
+                builder: (context, child) {
+                  if (widget.menuStore.value.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return ListView.separated(
+                    padding: const EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 80),
+                    itemCount: widget.menuStore.students.length,
+                    separatorBuilder: (__, _) => const SizedBox(height: 16),
+                    itemBuilder: (__, index) => StudentCard(
+                      student: widget.menuStore.students[index],
+                      onTapDelete: () async {
+                        await widget.menuStore.deleteStudentById(widget.menuStore.students[index].id);
+                        await widget.menuStore.getAllStudents();
+                      },
+                      onTapEdit: () {},
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButton: const FloatActionAddStudent(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

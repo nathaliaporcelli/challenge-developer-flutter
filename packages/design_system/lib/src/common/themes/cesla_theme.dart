@@ -1,7 +1,8 @@
-import 'package:design_system/src/common/colors/cesla_color_scheme.dart';
-import 'package:design_system/src/common/extensions/cesla_text_styles_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../colors/cesla_color_scheme.dart';
+import '../extensions/cesla_text_styles_extension.dart';
 
 class CeslaTheme {
   static ThemeData get() {

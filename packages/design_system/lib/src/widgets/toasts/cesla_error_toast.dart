@@ -1,6 +1,7 @@
-import 'package:design_system/design_system.dart';
-import 'package:design_system/src/common/colors/cesla_color_scheme.dart';
 import 'package:flutter/material.dart';
+
+import '../../../design_system.dart';
+import '../../common/colors/cesla_color_scheme.dart';
 
 class CeslaErrorToast {
   static void show(BuildContext context, String message) {
@@ -16,6 +17,7 @@ class CeslaErrorToast {
           ),
           child: Text(
             message,
+            maxLines: 2,
             style: Theme.of(context)
                 .extension<CeslaTextStylesExtension>()!
                 .caption

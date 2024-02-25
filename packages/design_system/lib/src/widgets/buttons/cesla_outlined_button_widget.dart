@@ -1,6 +1,7 @@
-import 'package:design_system/src/common/colors/cesla_color_scheme.dart';
-import 'package:design_system/src/common/extensions/cesla_text_styles_extension.dart';
 import 'package:flutter/material.dart';
+
+import '../../common/colors/cesla_color_scheme.dart';
+import '../../common/extensions/cesla_text_styles_extension.dart';
 
 class CeslaOutlinedButton extends StatelessWidget {
   final String title;
@@ -24,7 +25,6 @@ class CeslaOutlinedButton extends StatelessWidget {
         style: OutlinedButton.styleFrom(
           side: const BorderSide(
             color: CeslaThemeColors.primary,
-            width: 1,
           ),
         ),
         child: Text(

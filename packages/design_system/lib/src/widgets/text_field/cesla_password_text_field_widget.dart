@@ -1,5 +1,6 @@
-import 'package:design_system/src/widgets/text_field/cesla_text_field_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'cesla_text_field_widget.dart';
 
 class CeslaPasswordTextField extends StatefulWidget {
   final Function(String?)? onSaved;

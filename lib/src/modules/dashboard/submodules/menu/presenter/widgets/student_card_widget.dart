@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/extensions/context_extensions.dart';
+import '../../domain/entities/student_entity.dart';
 
 class StudentCard extends StatelessWidget {
-  const StudentCard({super.key});
+  final StudentEntity student;
+  final Function() onTapEdit;
+  final Function() onTapDelete;
+
+  const StudentCard({
+    super.key,
+    required this.student,
+    required this.onTapEdit,
+    required this.onTapDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +37,7 @@ class StudentCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ana Julia',
+                  student.name,
                   style: context.texts.label.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -35,11 +45,11 @@ class StudentCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  '158453',
+                  student.academicRecord,
                   style: context.texts.label,
                 ),
                 Text(
-                  'CPF: 086.7197.29-80',
+                  'CPF: ${student.cpf}',
                   style: context.texts.label,
                 ),
               ],
@@ -65,7 +75,7 @@ class StudentCard extends StatelessWidget {
               Material(
                 child: InkWell(
                   borderRadius: BorderRadius.circular(18),
-                  onTap: () {},
+                  onTap: onTapDelete,
                   child: SizedBox(
                     height: 36,
                     width: 36,
