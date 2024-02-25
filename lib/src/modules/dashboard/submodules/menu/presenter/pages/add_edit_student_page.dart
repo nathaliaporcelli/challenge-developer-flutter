@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/mixins/validation_mixin.dart';
-import '../../domain/dtos/student_dto.dart';
+import '../../domain/dtos/post_student_dto.dart';
+import '../../domain/dtos/put_student_dto.dart';
 import '../../domain/entities/student_entity.dart';
 import '../stores/menu_store.dart';
 import '../widgets/menu_app_bar.dart';
@@ -181,8 +182,8 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
 
     if (isEdit) {
       await widget.menuStore.editStudent(
-        widget.studentEntity!.id,
-        StudentDTO(
+        PutStudentDTO(
+          id: widget.studentEntity!.id,
           name: nameController.text,
           email: emailController.text,
           birthDate: dateController.text.dateTimeFromDDMMYYYY(),
@@ -194,7 +195,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
     }
 
     await widget.menuStore.createStudent(
-      StudentDTO(
+      PostStudentDTO(
         name: nameController.text,
         email: emailController.text,
         birthDate: dateController.text.dateTimeFromDDMMYYYY(),

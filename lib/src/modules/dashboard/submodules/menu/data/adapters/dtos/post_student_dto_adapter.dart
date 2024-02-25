@@ -1,7 +1,7 @@
-import '../../../domain/dtos/student_dto.dart';
+import '../../../domain/dtos/post_student_dto.dart';
 
-class StudentDTOAdapter {
-  static Map<String, dynamic> toMap(StudentDTO dto) {
+class PostStudentDTOAdapter {
+  static Map<String, dynamic> toMap(PostStudentDTO dto) {
     return {
       'name': dto.name,
       'email': dto.email,

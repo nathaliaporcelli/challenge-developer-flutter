@@ -1,9 +1,11 @@
 import '../../../../../../core/services/client/dtos/client_request_dto.dart';
 import '../../../../../../core/services/client/i_client_service.dart';
-import '../../domain/dtos/student_dto.dart';
+import '../../domain/dtos/post_student_dto.dart';
+import '../../domain/dtos/put_student_dto.dart';
 import '../../domain/entities/student_entity.dart';
 import '../../domain/repositories/i_menu_repository.dart';
-import '../adapters/dtos/student_dto_adapter.dart';
+import '../adapters/dtos/post_student_dto_adapter.dart';
+import '../adapters/dtos/put_student_dto_adapter.dart';
 import '../adapters/entities/student_entity_adapter.dart';
 
 class MenuRepository implements IMenuRepository {
@@ -33,11 +35,11 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<void> putStudent(int id, StudentDTO studentDto) async {
-    final data = StudentDTOAdapter.toMap(studentDto);
+  Future<void> putStudent(PutStudentDTO studentDto) async {
+    final data = PutStudentDTOAdapter.toMap(studentDto);
 
     final dto = ClientRequestDTO(
-      path: 'student/$id',
+      path: 'student/${studentDto.id}',
       data: data,
     );
 
@@ -45,8 +47,8 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<void> postStudent(StudentDTO dto) async {
-    final studentDto = StudentDTOAdapter.toMap(dto);
+  Future<void> postStudent(PostStudentDTO dto) async {
+    final studentDto = PostStudentDTOAdapter.toMap(dto);
 
     final requestDto = ClientRequestDTO(
       path: 'student',

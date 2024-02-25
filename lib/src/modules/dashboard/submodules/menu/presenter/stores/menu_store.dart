@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/exceptions/cesla_exceptions.dart';
-import '../../domain/dtos/student_dto.dart';
+import '../../domain/dtos/post_student_dto.dart';
+import '../../domain/dtos/put_student_dto.dart';
 import '../../domain/repositories/i_menu_repository.dart';
 import 'states/create_students_state.dart';
 import 'states/delete_students_state.dart';
@@ -30,7 +31,7 @@ class MenuStore {
     }
   }
 
-  Future<void> createStudent(StudentDTO dto) async {
+  Future<void> createStudent(PostStudentDTO dto) async {
     try {
       createStudents.value = CreateStudentsLoadingState();
 
@@ -44,11 +45,11 @@ class MenuStore {
     }
   }
 
-  Future<void> editStudent(int studentId, StudentDTO student) async {
+  Future<void> editStudent(PutStudentDTO dto) async {
     try {
       editStudents.value = EditStudentsLoadingState();
 
-      await menuRepository.putStudent(studentId, student);
+      await menuRepository.putStudent(dto);
 
       editStudents.value = EditStudentsSuccessState();
       await getAllStudents();
