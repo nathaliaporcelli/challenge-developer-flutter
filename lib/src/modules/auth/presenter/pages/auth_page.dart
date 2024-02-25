@@ -68,7 +68,7 @@ class _AuthPageState extends State<AuthPage> {
               ),
               const SizedBox(height: 8),
               const AccountRecoveryText(),
-              const SizedBox(height: 64),
+              const SizedBox(height: 32),
               CeslaElevatedButton(
                 title: 'Entrar',
                 onPressed: signIn,

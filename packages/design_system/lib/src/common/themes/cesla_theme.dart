@@ -12,17 +12,17 @@ class CeslaTheme {
         CeslaTextStylesExtension(
           title: GoogleFonts.inter(
             fontSize: 36,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
             color: CeslaThemeColors.black,
           ),
           header: GoogleFonts.inter(
             fontSize: 20,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
             color: CeslaThemeColors.black,
           ),
           subHeader: GoogleFonts.inter(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
             color: CeslaThemeColors.black,
           ),
           label: GoogleFonts.inter(
