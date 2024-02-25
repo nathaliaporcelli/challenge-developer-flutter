@@ -5,8 +5,14 @@ import 'cesla_text_field_widget.dart';
 class CeslaPasswordTextField extends StatefulWidget {
   final Function(String?)? onSaved;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
 
-  const CeslaPasswordTextField({super.key, this.onSaved, required this.controller});
+  const CeslaPasswordTextField({
+    super.key,
+    this.onSaved,
+    required this.controller,
+    this.validator,
+  });
 
   @override
   State<CeslaPasswordTextField> createState() => _CeslaPasswordTextFieldState();
@@ -21,12 +27,7 @@ class _CeslaPasswordTextFieldState extends State<CeslaPasswordTextField> {
       labelText: 'Senha',
       controller: widget.controller,
       onSaved: widget.onSaved,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Campo obrigatório';
-        }
-        return null;
-      },
+      validator: widget.validator,
       prefixIcon: Icons.lock_outline,
       suffixIcon: getSuffixIcon(),
       onPressedSuffix: () {

@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/mixins/validation_mixin.dart';
 import '../../../../core/routes/routes.dart';
 import '../stores/auth_store.dart';
 import 'widgets/account_recovery_text_widget.dart';
@@ -15,7 +16,7 @@ class AuthPage extends StatefulWidget {
   State<AuthPage> createState() => _AuthPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthPageState extends State<AuthPage> with ValidationMixin {
   final formKey = GlobalKey<FormState>();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -27,12 +28,21 @@ class _AuthPageState extends State<AuthPage> {
     widget.authStore.addListener(() {
       if (widget.authStore.value.isSuccess) {
         context.go(Routes.dashboard.path);
-      } else if (widget.authStore.value.isError) {
+      }
+
+      if (widget.authStore.value.isError) {
         final errorMessage = widget.authStore.value.asError.exception.message;
 
         CeslaErrorToast.show(context, errorMessage);
       }
     });
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -54,16 +64,12 @@ class _AuthPageState extends State<AuthPage> {
                 labelText: 'Usuário',
                 prefixIcon: Icons.person_outline,
                 controller: usernameController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Campo obrigatório';
-                  }
-                  return null;
-                },
+                validator: isNotEmpty,
               ),
               const SizedBox(height: 16),
               CeslaPasswordTextField(
                 controller: passwordController,
+                validator: isNotEmpty,
               ),
               const SizedBox(height: 8),
               const AccountRecoveryText(),

@@ -5,8 +5,8 @@ import '../../domain/entities/student_entity.dart';
 
 class StudentCard extends StatelessWidget {
   final StudentEntity student;
-  final Function() onTapEdit;
-  final Function() onTapDelete;
+  final VoidCallback onTapEdit;
+  final VoidCallback onTapDelete;
 
   const StudentCard({
     super.key,

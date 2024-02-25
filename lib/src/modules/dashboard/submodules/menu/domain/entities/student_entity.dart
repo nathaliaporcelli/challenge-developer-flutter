@@ -6,7 +6,7 @@ class StudentEntity {
   final String academicRecord;
   final String email;
 
-  StudentEntity({
+  const StudentEntity({
     required this.id,
     required this.name,
     required this.birthDate,

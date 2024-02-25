@@ -9,39 +9,38 @@ import '../adapters/entities/student_entity_adapter.dart';
 class MenuRepository implements IMenuRepository {
   final IClientService clientService;
 
-  MenuRepository({required this.clientService});
+  const MenuRepository({required this.clientService});
 
   @override
   Future<void> deleteStudentById(int id) async {
-    await clientService.delete(
-      ClientRequestDTO(
-        path: 'student/$id',
-      ),
+    final dto = ClientRequestDTO(
+      path: 'student/$id',
     );
+
+    await clientService.delete(dto);
   }
 
   @override
   Future<List<StudentEntity>> getAllStudents() async {
-    final response = await clientService.get(
-      const ClientRequestDTO(
-        path: 'student',
-      ),
+    const dto = ClientRequestDTO(
+      path: 'student',
     );
 
-    final userList = (response.body as List<dynamic>)
-        .map((dynamic item) => StudentEntityAdapter.fromMap(item as Map<String, dynamic>))
-        .toList();
+    final response = await clientService.get(dto);
 
-    return userList;
+    final mapList = List<Map<String, dynamic>>.from(response.body);
+    return mapList.map(StudentEntityAdapter.fromMap).toList();
   }
 
   @override
   Future<void> postStudent(StudentDTO dto) async {
-    await clientService.post(
-      ClientRequestDTO(
-        path: 'student',
-        data: StudentDTOAdapter.toMap(dto),
-      ),
+    final studentDto = StudentDTOAdapter.toMap(dto);
+
+    final requestDto = ClientRequestDTO(
+      path: 'student',
+      data: studentDto,
     );
+
+    await clientService.post(requestDto);
   }
 }

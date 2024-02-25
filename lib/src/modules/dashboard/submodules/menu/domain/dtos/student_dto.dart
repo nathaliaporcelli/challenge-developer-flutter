@@ -5,7 +5,7 @@ class StudentDTO {
   final String academicRecord;
   final String cpf;
 
-  StudentDTO({
+  const StudentDTO({
     required this.name,
     required this.email,
     required this.birthDate,
