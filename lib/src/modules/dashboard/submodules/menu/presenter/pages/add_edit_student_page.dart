@@ -181,7 +181,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
     formKey.currentState!.save();
 
     if (isEdit) {
-      await widget.menuStore.editStudent(
+      return widget.menuStore.editStudent(
         PutStudentDTO(
           id: widget.studentEntity!.id,
           name: nameController.text,
@@ -191,10 +191,9 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
           cpf: cpfController.text,
         ),
       );
-      return;
     }
 
-    await widget.menuStore.createStudent(
+    return widget.menuStore.createStudent(
       PostStudentDTO(
         name: nameController.text,
         email: emailController.text,

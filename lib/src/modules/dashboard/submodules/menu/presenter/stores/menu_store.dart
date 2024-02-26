@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/exceptions/cesla_exceptions.dart';
@@ -39,7 +41,7 @@ class MenuStore {
 
       createStudents.value = CreateStudentsSuccessState();
 
-      await getAllStudents();
+      unawaited(getAllStudents());
     } on CeslaException catch (e) {
       createStudents.value = CreateStudentsErrorState(e);
     }
@@ -52,7 +54,7 @@ class MenuStore {
       await menuRepository.putStudent(dto);
 
       editStudents.value = EditStudentsSuccessState();
-      await getAllStudents();
+      unawaited(getAllStudents());
     } on CeslaException catch (e) {
       editStudents.value = EditStudentsErrorState(e);
     }
@@ -66,7 +68,7 @@ class MenuStore {
 
       deleteStudents.value = DeleteStudentsSuccessState();
 
-      await getAllStudents();
+      unawaited(getAllStudents());
     } on CeslaException catch (e) {
       deleteStudents.value = DeleteStudentsErrorState(e);
     }

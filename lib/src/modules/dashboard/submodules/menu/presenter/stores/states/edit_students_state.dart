@@ -17,6 +17,4 @@ class EditStudentsErrorState extends EditStudentsState {
   EditStudentsErrorState(this.exception);
 }
 
-class EditStudentsSuccessState extends EditStudentsState {
-  EditStudentsSuccessState();
-}
+class EditStudentsSuccessState extends EditStudentsState {}

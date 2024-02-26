@@ -24,13 +24,17 @@ class _MenuPageState extends State<MenuPage> {
 
     widget.menuStore.getAllStudents();
 
-    widget.menuStore.fetchStudents.addListener(() {
-      if (widget.menuStore.fetchStudents.value.isError) {
-        final errorMessage = widget.menuStore.fetchStudents.value.asError.exception.message;
+    widget.menuStore.createStudents.addListener(createListenerFunction);
+    widget.menuStore.editStudents.addListener(editListenerFunction);
+    widget.menuStore.fetchStudents.addListener(fetchListenerFunction);
+  }
 
-        CeslaErrorToast.show(context, errorMessage);
-      }
-    });
+  @override
+  void dispose() {
+    widget.menuStore.createStudents.removeListener(createListenerFunction);
+    widget.menuStore.editStudents.removeListener(editListenerFunction);
+    widget.menuStore.fetchStudents.removeListener(fetchListenerFunction);
+    super.dispose();
   }
 
   @override
@@ -60,7 +64,7 @@ class _MenuPageState extends State<MenuPage> {
                       padding: const EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 80),
                       itemCount: fetchStudents.value.asSuccess.students.length,
                       separatorBuilder: (__, _) => const SizedBox(height: 16),
-                      itemBuilder: (__, index) => StudentCard(
+                      itemBuilder: (_, index) => StudentCard(
                         student: fetchStudents.value.asSuccess.students[index],
                         onTapDelete: () async {
                           CeslaConfirmDialog.show(
@@ -99,5 +103,35 @@ class _MenuPageState extends State<MenuPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  void createListenerFunction() {
+    if (widget.menuStore.createStudents.value.isSuccess) {
+      CeslaAlertDialog.show(
+        context: context,
+        title: 'Aluno adicionado',
+        message: 'O aluno foi adicionado com sucesso!',
+        onConfirm: () => context.pop(),
+      );
+    }
+  }
+
+  void editListenerFunction() {
+    if (widget.menuStore.createStudents.value.isSuccess) {
+      CeslaAlertDialog.show(
+        context: context,
+        title: 'Aluno editado',
+        message: 'O aluno foi editado com sucesso!',
+        onConfirm: () => context.pop(),
+      );
+    }
+  }
+
+  void fetchListenerFunction() {
+    if (widget.menuStore.fetchStudents.value.isError) {
+      final errorMessage = widget.menuStore.fetchStudents.value.asError.exception.message;
+
+      CeslaErrorToast.show(context, errorMessage);
+    }
   }
 }

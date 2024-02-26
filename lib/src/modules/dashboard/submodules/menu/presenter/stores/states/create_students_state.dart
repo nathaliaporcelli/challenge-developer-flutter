@@ -17,6 +17,4 @@ class CreateStudentsErrorState extends CreateStudentsState {
   CreateStudentsErrorState(this.exception);
 }
 
-class CreateStudentsSuccessState extends CreateStudentsState {
-  CreateStudentsSuccessState();
-}
+class CreateStudentsSuccessState extends CreateStudentsState {}
