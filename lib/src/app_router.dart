@@ -9,6 +9,7 @@ import 'modules/dashboard/dashboard_page.dart';
 import 'modules/dashboard/submodules/menu/domain/entities/student_entity.dart';
 import 'modules/dashboard/submodules/menu/presenter/pages/add_edit_student_page.dart';
 import 'modules/dashboard/submodules/menu/presenter/stores/menu_store.dart';
+import 'modules/splash/presenter/controller/splash_controller.dart';
 import 'modules/splash/presenter/pages/splash_page.dart';
 
 class AppRouter {
@@ -33,7 +34,9 @@ class AppRouter {
     return [
       GoRoute(
         path: Routes.splash.path,
-        builder: (_, __) => const SplashPage(),
+        builder: (_, __) => SplashPage(
+          controller: Injector.retrive<SplashController>(),
+        ),
       ),
       GoRoute(
         path: Routes.login.path,
