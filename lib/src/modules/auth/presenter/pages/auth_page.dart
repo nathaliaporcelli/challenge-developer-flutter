@@ -101,7 +101,7 @@ class _AuthPageState extends State<AuthPage> with ValidationMixin {
 
   void signUp() {
     if (formKey.currentState!.validate()) {
-      widget.authStore.signIn(
+      widget.authStore.signUp(
         username: usernameController.text,
         password: passwordController.text,
       );
