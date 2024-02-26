@@ -3,7 +3,7 @@ import 'package:cesla/src/modules/dashboard/submodules/menu/domain/dtos/put_stud
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('PutStudentDTOAdapter ', () {
+  group('PutStudentDTOAdapter.toMap |', () {
     test('should be able to parse put student dto in json map successfully', () async {
       // Arrange
       const name = 'Artur';

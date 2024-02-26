@@ -2,7 +2,7 @@ import 'package:cesla/src/modules/auth/data/adapters/entities/user_adapter.dart'
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('UserAdapter ', () {
+  group('UserAdapter.fromMap |', () {
     test('should be able to parse json map in user entity successfully', () async {
       // Arrange
       const id = 1;

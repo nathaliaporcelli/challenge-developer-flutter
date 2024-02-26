@@ -3,7 +3,7 @@ import 'package:cesla/src/modules/dashboard/submodules/menu/domain/dtos/post_stu
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('PostStudentDTOAdapter ', () {
+  group('PostStudentDTOAdapter.toMap |', () {
     test('should be able to parse post student dto in json map successfully', () async {
       // Arrange
       const name = 'Artur';

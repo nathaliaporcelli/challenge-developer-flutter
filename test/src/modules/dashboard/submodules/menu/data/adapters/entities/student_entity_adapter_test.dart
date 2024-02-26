@@ -2,8 +2,8 @@ import 'package:cesla/src/modules/dashboard/submodules/menu/data/adapters/entiti
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('UserAdapter ', () {
-    test('should be able to parse json map in user entity successfully', () async {
+  group('StudentEntityAdapter.fromMap |', () {
+    test('should be able to parse json map in student entity successfully', () async {
       // Arrange
       const id = 1;
       const name = 'Artur';

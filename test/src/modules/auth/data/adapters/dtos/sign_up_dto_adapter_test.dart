@@ -3,7 +3,7 @@ import 'package:cesla/src/modules/auth/domain/dtos/sign_up_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('SignUpDtoAdapter', () {
+  group('SignUpDtoAdapter.toMap |', () {
     test('should be able to parse sign up dto in json map successfully', () async {
       // Arrange
       const username = 'artur';
