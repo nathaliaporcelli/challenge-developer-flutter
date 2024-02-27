@@ -39,7 +39,7 @@ class AppInjections {
         clientService: Injector.retrive<IClientService>(),
       ),
     );
-    Injector.registerFactory<MenuStore>(
+    Injector.registerSingleton<MenuStore>(
       MenuStore(
         menuRepository: Injector.retrive<IMenuRepository>(),
       ),

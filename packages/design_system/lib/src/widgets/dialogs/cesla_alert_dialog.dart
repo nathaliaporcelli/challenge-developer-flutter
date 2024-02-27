@@ -11,9 +11,6 @@ class CeslaAlertDialog {
     String confirmText = 'Ok',
     VoidCallback? onConfirm,
   }) {
-    final isThereCurrentDialogShowing = ModalRoute.of(context)?.isCurrent != true;
-    if (isThereCurrentDialogShowing) return;
-
     showDialog(
       context: context,
       barrierColor: CeslaThemeColors.grey.withOpacity(0.25),

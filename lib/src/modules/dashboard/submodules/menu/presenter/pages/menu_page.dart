@@ -23,16 +23,11 @@ class _MenuPageState extends State<MenuPage> {
     super.initState();
 
     widget.menuStore.getAllStudents();
-
-    widget.menuStore.createStudents.addListener(createListenerFunction);
-    widget.menuStore.editStudents.addListener(editListenerFunction);
     widget.menuStore.fetchStudents.addListener(fetchListenerFunction);
   }
 
   @override
   void dispose() {
-    widget.menuStore.createStudents.removeListener(createListenerFunction);
-    widget.menuStore.editStudents.removeListener(editListenerFunction);
     widget.menuStore.fetchStudents.removeListener(fetchListenerFunction);
     super.dispose();
   }
@@ -80,10 +75,12 @@ class _MenuPageState extends State<MenuPage> {
                           );
                         },
                         onTapEdit: () {
-                          context.pushNamed(
-                            Routes.addEditStudent.name,
-                            extra: fetchStudents.value.asSuccess.students[index],
-                          );
+                          context
+                              .pushNamed(
+                                Routes.addEditStudent.name,
+                                extra: fetchStudents.value.asSuccess.students[index],
+                              )
+                              .then((value) => showEditedModal());
                         },
                       ),
                     );
@@ -99,13 +96,17 @@ class _MenuPageState extends State<MenuPage> {
         ),
       ),
       floatingActionButton: FloatActionAddStudent(
-        onTap: () => context.pushNamed(Routes.addEditStudent.name),
+        onTap: () => context
+            .pushNamed(
+              Routes.addEditStudent.name,
+            )
+            .then((value) => showCreatedModal()),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
-  void createListenerFunction() {
+  void showCreatedModal() {
     if (widget.menuStore.createStudents.value.isSuccess) {
       CeslaAlertDialog.show(
         context: context,
@@ -116,8 +117,8 @@ class _MenuPageState extends State<MenuPage> {
     }
   }
 
-  void editListenerFunction() {
-    if (widget.menuStore.createStudents.value.isSuccess) {
+  void showEditedModal() {
+    if (widget.menuStore.editStudents.value.isSuccess) {
       CeslaAlertDialog.show(
         context: context,
         title: 'Aluno editado',

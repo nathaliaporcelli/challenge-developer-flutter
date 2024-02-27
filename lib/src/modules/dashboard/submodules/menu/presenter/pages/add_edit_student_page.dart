@@ -112,6 +112,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
                       labelText: 'CPF*',
                       keyboardType: TextInputType.number,
                       prefixIcon: Icons.person_outline,
+                      readOnly: isEdit,
                       controller: cpfController,
                       inputFormatters: [
                         CeslaCPFFormatter(),
@@ -122,6 +123,7 @@ class _AddEditStudentPageState extends State<AddEditStudentPage> with Validation
                     CeslaTextField(
                       labelText: 'Registro acadêmico*',
                       prefixIcon: Icons.person_outline,
+                      readOnly: isEdit,
                       controller: academicRecordController,
                       validator: isNotEmpty,
                     ),
