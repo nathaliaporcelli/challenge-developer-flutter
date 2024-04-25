@@ -48,7 +48,7 @@ class AuthRepository implements IAuthRepository {
     final usersList = List<Map<String, dynamic>>.from(response.body);
 
     final userMap = usersList.firstWhere(
-      (user) => user['username'] == dto.username && user['password'] == dto.password,
+      (user) => user['email'] == dto.username && user['password'] == dto.password,
       orElse: () => throw const UserNotFoundException(),
     );
 
