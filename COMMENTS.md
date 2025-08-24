@@ -1,18 +1,38 @@
-### Decisão arquitetural
-A arquitetura que escolhi, foi a de camadas, pois ela possibilita uma boa separação das responsabilidades e uma organização clara. A divisão por módulos facilita a manutenção do código e melhora a legibilidade. Devido esta separação cada camada possui responsabilidades bem definidas, favorecendo a correção de problemas específicos de cada camada.
+Teste prático:
+1. Elaborar um plano de testes com cases em BDD utilizando os critérios de 
+aceitação e documentação, assim como o protótipo do app.
 
-Além disso, realizei a separação de elementos padrões do design, criando um package, 'design_system', independente do aplicativo. Levando uma padronização do layout e facilitando possíveis mudanças no design do aplicativo, alterando o padrão como um todo.
-### Bibliotecas de terceiros
-- [get_it](https://pub.dev/packages/get_it)
-- [go_router](https://pub.dev/packages/go_router)
-- [dio](https://pub.dev/packages/dio)
-- [shared_preferences](https://pub.dev/packages/shared_preferences)
-- [melos](https://pub.dev/packages/melos)
-- [flutter_lints](https://pub.dev/packages/flutter_lints)
-- [flutterando_analysis](https://pub.dev/packages/flutterando_analysis)
+User Story
 
-### O que faria se tivesse mais tempo?
-Continuaria a fazer testes de unidade, inicializaria os testes de widgets, como o de integração. Pensaria em segregar mais as telas, dividindo-as em mais widgets independente.
+Como usuário da aplicação
+Quero ter acesso ao sistema 
+Para que eu consiga fazer o gerenciamento dos alunos
 
-### Quais requisitos obrigatórios que não foram entregues?
-Todos os requisitos obrigatórios foram entregues.
+DADO que o usuário possua credenciais válidas para acessar  a aplicação
+E preencha corretamente os campos "Usuário" e "Senha"
+Quando ele clicar em "Cadastrar"
+ENTÃO ele deve ser direcionado para a
+
+
+2. Criar uma automação em Cypress com as APIs disponíveis no projeto: 
+challenge-developer-flutter.
+Link para realizar a etapa 1 e 2: https://github.com/zanelladev/challengedeveloper-flutter
+
+
+3. Elabore uma estratégia para prevenção de bugs.
+
+
+4. Um app foi entregue para realizar os testes finais antes de seu lançamento, 
+durante o seu desenvolvimento foram realizados testes funcionais pela 
+equipe de QA, porém, quando iniciou os testes de regressão so sistema
+você se deparou com vários problemas diferentes, que não foram 
+percebidos durante os testes funcionais que foram aplicados. Diante dessa 
+situação, nós temos alguns problemas:
+• O app está com prazo comprometido visando a entrega para o 
+cliente.
+• O tempo de teste que você tinha estimado no início é pouco, diante 
+dos problemas encontrados.
+Elabore duas estratégias:
+1. Um plano de ação diante dessa situação.
+2. Uma estratégia para que esse problema talvez não houvesse 
+ocorrido.
